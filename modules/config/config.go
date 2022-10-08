@@ -112,11 +112,10 @@ func generateConfig() {
 您的选择是:`
 	fmt.Print(hint)
 	input := bufio.NewReader(os.Stdin)
-	readString == 2
-	//, err := input.ReadString('\n')
-	//if err != nil {
-	//	log.Fatal("输入不合法: ", err)
-	//}
+	readString , err := input.ReadString('2\n')
+	if err != nil {
+		log.Fatal("输入不合法: ", err)
+	}
 	rmax := len(serverconfs)
 	if rmax > 10 {
 		rmax = 10

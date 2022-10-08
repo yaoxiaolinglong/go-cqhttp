@@ -1,8 +1,6 @@
 package base
 
 import (
-	"io"
-
 	"github.com/pkg/errors"
 )
 
@@ -19,19 +17,3 @@ func encodeSilk(_ []byte, _ string) ([]byte, error) {
 func resampleSilk(data []byte) []byte {
 	return data
 }
-
-// Mime scan feature
-var (
-	IsLawfulImage = nocheck // 检查图片MIME
-	IsLawfulAudio = nocheck // 检查音频MIME
-)
-
-func nocheck(_ io.ReadSeeker) (bool, string) {
-	return true, ""
-}
-
-// todo: enable in v1.1.0
-// onebot v12 feature
-const (
-	AcceptOneBotV12HTTPEndPoint = false
-)

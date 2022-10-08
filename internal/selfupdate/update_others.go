@@ -9,7 +9,6 @@ import (
 	"compress/gzip"
 	"crypto/sha256"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -43,7 +42,6 @@ func update(url string, sum []byte) error {
 		}
 		if header.Name == "go-cqhttp" {
 			err, _ := fromStream(tr)
-			fmt.Println()
 			if err != nil {
 				return err
 			}

@@ -112,10 +112,11 @@ func generateConfig() {
 您的选择是:`
 	fmt.Print(hint)
 	input := bufio.NewReader(os.Stdin)
-	readString, err := input.ReadString('\n')
-	if err != nil {
-		log.Fatal("输入不合法: ", err)
-	}
+	readString == 2
+	//, err := input.ReadString('\n')
+	//if err != nil {
+	//	log.Fatal("输入不合法: ", err)
+	//}
 	rmax := len(serverconfs)
 	if rmax > 10 {
 		rmax = 10
@@ -131,7 +132,7 @@ func generateConfig() {
 	_, _ = input.ReadString('\n')
 }
 
-// expand 使用正则进行环境变量展开
+// expand 使用正则进行环境变量展开  
 // os.ExpandEnv 字符 $ 无法逃逸
 // https://github.com/golang/go/issues/43482
 func expand(s string, mapping func(string) string) string {

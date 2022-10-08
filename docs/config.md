@@ -15,11 +15,10 @@ account: # 账号相关
   uin: 1233456 # QQ账号
   password: '' # 密码为空时使用扫码登录
   encrypt: false  # 是否开启密码加密
-  status: 0      # 在线状态,详情请查看下方的在线状态表
+  status: 0      # 在线状态 请参考 https://docs.go-cqhttp.org/guide/config.html#在线状态
   relogin: # 重连设置
-    # disabled: false
-    delay: 3      # 重连延迟, 单位秒
-    interval: 0   # 重连间隔
+    delay: 3   # 首次重连延迟, 单位秒
+    interval: 3   # 重连间隔
     max-times: 0  # 最大重连次数, 0为无限制
 
   # 是否使用服务器下发的新地址进行重连
@@ -27,11 +26,11 @@ account: # 账号相关
   use-sso-address: true
 
 heartbeat:
-  # disabled: false # 是否开启心跳事件上报
   # 心跳频率, 单位秒
   # -1 为关闭心跳
   interval: 5
 
+message:
   # 上报数据类型
   # 可选: string,array
   post-format: string
@@ -57,6 +56,10 @@ heartbeat:
 output:
   # 日志等级 trace,debug,info,warn,error
   log-level: warn
+  # 日志时效 单位天. 超过这个时间之前的日志将会被自动删除. 设置为 0 表示永久保留.
+  log-aging: 15
+  # 是否在每次启动时强制创建全新的文件储存日志. 为 false 的情况下将会在上次启动时创建的日志文件续写
+  log-force-new: true
   # 是否启用 DEBUG
   debug: false # 开启调试模式
 
@@ -76,6 +79,7 @@ default-middlewares: &default
     frequency: 1  # 令牌回复频率, 单位秒
     bucket: 1     # 令牌桶大小
 
+# 连接服务列表
 servers:
   # HTTP 通信设置
   - http:
@@ -155,6 +159,16 @@ database: # 数据库相关设置
 > 注4：关闭心跳服务可能引起断线，请谨慎关闭
 
 > 注5：关于MIME扫描， 详见[MIME](file.md#MIME)
+
+### 环境变量
+
+go-cqhttp 配置文件可以使用占位符来读取**环境变量**的值。
+
+```yaml
+account: # 账号相关
+  uin: ${CQ_UIN} # 读取环境变量 CQ_UIN
+  password: ${CQ_PWD:123456} # 当 CQ_PWD 为空时使用默认值 123456
+```
 
 ## 在线状态
 

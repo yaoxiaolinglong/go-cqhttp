@@ -25,10 +25,10 @@ linters:
     - deadcode
     - depguard
     - dogsled
-    - dupl
     - errcheck
     - exportloopref
     - exhaustive
+    - bidichk
     #- funlen
     #- goconst
     - gocritic
@@ -58,20 +58,6 @@ linters:
     - revive
     - forbidigo
     - makezero
-    #- interfacer
-
-  # don't enable:
-  # - scopelint
-  # - gochecknoglobals
-  # - gocognit
-  # - godot
-  # - godox
-  # - goerr113
-  # - interfacer
-  # - maligned
-  # - nestif
-  # - testpackage
-  # - wsl
 
 run:
   # default concurrency is a available CPU number.
@@ -80,6 +66,7 @@ run:
   issues-exit-code: 1
   skip-dirs:
     - db
+    - cmd/api-generator
   tests: true
 
 # output configuration options

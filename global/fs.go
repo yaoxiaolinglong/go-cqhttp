@@ -32,6 +32,8 @@ const (
 	VideoPath = "data/videos"
 	// CachePath go-cqhttp使用的缓存目录
 	CachePath = "data/cache"
+	// DumpsPath go-cqhttp使用错误转储目录
+	DumpsPath = "dumps"
 )
 
 var (
@@ -85,12 +87,9 @@ func FindFile(file, cache, p string) (data []byte, err error) {
 	data, err = nil, ErrSyntax
 	switch {
 	case strings.HasPrefix(file, "http"): // https also has prefix http
-		if cache == "" {
-			cache = "1"
-		}
 		hash := md5.Sum([]byte(file))
 		cacheFile := path.Join(CachePath, hex.EncodeToString(hash[:])+".cache")
-		if PathExists(cacheFile) && cache == "1" {
+		if (cache == "" || cache == "1") && PathExists(cacheFile) {
 			return os.ReadFile(cacheFile)
 		}
 		data, err = GetBytes(file)

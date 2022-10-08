@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -33,7 +32,6 @@ func update(url string, sum []byte) error {
 		return err
 	}
 	err, _ = fromStream(file)
-	fmt.Println()
 	if err != nil {
 		return err
 	}

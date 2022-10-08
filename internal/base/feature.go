@@ -29,9 +29,3 @@ var (
 func nocheck(_ io.ReadSeeker) (bool, string) {
 	return true, ""
 }
-
-// todo: enable in v1.1.0
-// onebot v12 feature
-const (
-	AcceptOneBotV12HTTPEndPoint = false
-)

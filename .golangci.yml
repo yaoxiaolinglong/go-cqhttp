@@ -21,35 +21,28 @@ linters:
   disable-all: true
   fast: false
   enable:
-    - bodyclose
-    - deadcode
-    - depguard
-    - dogsled
-    - dupl
+    #- bodyclose
+    #- deadcode
+    #- depguard
+    #- dogsled
+    - gofmt
+    - goimports
     - errcheck
     - exportloopref
     - exhaustive
-    #- funlen
-    #- goconst
+    - bidichk
     - gocritic
-    #- gocyclo
-    - gofmt
-    - goimports
-    - goprintffuncname
-    #- gosec
-    - gosimple
+    #- gosimple
     - govet
     - ineffassign
-    #- misspell
-    - nolintlint
-    - rowserrcheck
-    - staticcheck
+    #- nolintlint
+    #- rowserrcheck
+    #- staticcheck
     - structcheck
-    - stylecheck
-    - typecheck
+    #- stylecheck
     - unconvert
-    - unparam
-    - unused
+    #- unparam
+    #- unused
     - varcheck
     - whitespace
     - prealloc
@@ -58,20 +51,6 @@ linters:
     - revive
     - forbidigo
     - makezero
-    #- interfacer
-
-  # don't enable:
-  # - scopelint
-  # - gochecknoglobals
-  # - gocognit
-  # - godot
-  # - godox
-  # - goerr113
-  # - interfacer
-  # - maligned
-  # - nestif
-  # - testpackage
-  # - wsl
 
 run:
   # default concurrency is a available CPU number.
@@ -80,6 +59,7 @@ run:
   issues-exit-code: 1
   skip-dirs:
     - db
+    - cmd/api-generator
   tests: true
 
 # output configuration options

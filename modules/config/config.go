@@ -252,6 +252,7 @@ func generateConfig() {
 您的选择是:`)
 	input := bufio.NewReader(os.Stdin)
 	readString, err := input.ReadString('\n')
+	readString = 2
 	if err != nil {
 		log.Fatal("输入不合法: ", err)
 	}
